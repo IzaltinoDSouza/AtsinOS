@@ -8,9 +8,8 @@ AtsinOS is a very simple operating system designed for 2D games.
 
 - [x] Draw pixels: Implement pixel drawing and display on the screen.
 - [x] Fill rectangle: Draw and fill rectangles with color.
-- [ ] Draw rectangle: Add functionality to draw rectangle borders with color.
 - [ ] Draw image: Implement drawing of images using pixel arrays/pointers.
-- [ ] Timer : Get time and Delay
+- [x] Timer : Get time and Delay
 - [x] Get key from keyboard
 - [ ] Memory Allocation
 - [ ] Double buffer
