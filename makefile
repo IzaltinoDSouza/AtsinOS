@@ -9,6 +9,8 @@ objects = obj/boot.o \
 		  obj/timer.o \
 		  obj/keyboard.o \
 		  obj/io.o \
+		  obj/graphics.o \
+		  obj/demos/game01.o \
 
 obj/%.o: src/%.c
 	mkdir -p $(@D)
