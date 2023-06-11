@@ -17,3 +17,7 @@ typedef u32 size_t;
 typedef unsigned long long uint64_t;
 
 typedef unsigned char bool;
+
+#define true  1
+#define false 0
+#define NULL ((void*)0) 

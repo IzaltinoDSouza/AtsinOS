@@ -1,10 +1,11 @@
 OSNAME     = "AtsinOS"
-GCCPARAMS  = -m32 -std=c17 -ffreestanding -w -I"include/" -Wall -Wextra
+GCCPARAMS  = -m32 -std=gnu17 -ffreestanding -w -I"include/" -Wall -Wextra
 ASPARAMS   = --32
 LDPARAMS   = -melf_i386 -nostdlib --allow-multiple-definition
  
 objects = obj/boot.o \
 		  obj/kernel.o \
+		  obj/memory.o \
 		  obj/math.o \
 		  obj/timer.o \
 		  obj/keyboard.o \
@@ -46,7 +47,7 @@ clean:
 	
 .PHONY: run
 run: $(OSNAME).iso
-	qemu-system-x86_64 -m 256 -boot d -cdrom $<
+	qemu-system-x86_64 -m 256M -boot d -cdrom $<
 	
 .PHONY: all	
 all:
