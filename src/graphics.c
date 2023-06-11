@@ -12,7 +12,7 @@ u32 graphic_get_height()
 	return double_framebuffer->height;
 }
 
-void graphic_draw_pixels(u32 x,u32 y,u32 color)
+void graphic_draw_pixel(u32 x,u32 y,u32 color)
 {
 	u32 offset = (x + double_framebuffer->width * y) * (double_framebuffer->bpp/8);
 	
@@ -22,7 +22,7 @@ void graphic_draw_pixels(u32 x,u32 y,u32 color)
 	double_framebuffer->buffer[offset+0] = (color >>  0) & 0xff;
 }
 
-void graphic_draw_texture(u32 x,u32 y,u32 width,u32 height,u8 * pixels)
+void graphic_draw_pixels(u32 x,u32 y,u32 width,u32 height,u8 * pixels)
 {
 	//TODO check if x+width and y+height is inside of screen 
 	for(u32 posy = 0;posy < height;++posy)
@@ -30,7 +30,7 @@ void graphic_draw_texture(u32 x,u32 y,u32 width,u32 height,u8 * pixels)
 		for(u32 posx = 0;posx < width;++posx)
 		{
 			u32 offset = (posx + double_framebuffer->width * posy) * (double_framebuffer->bpp/8);
-			graphic_draw_pixels(posx+x,posy+y,pixels[offset]);
+			graphic_draw_pixel(posx+x,posy+y,pixels[offset]);
 		}
 	}
 }
@@ -42,7 +42,7 @@ void graphic_fill_rectangle(u32 x,u32 y,u32 width,u32 height,u32 color)
 	{
 		for(u32 posx = 0;posx < width;++posx)
 		{
-			graphic_draw_pixels(posx+x,posy+y,color);
+			graphic_draw_pixel(posx+x,posy+y,color);
 		}
 	}
 }
