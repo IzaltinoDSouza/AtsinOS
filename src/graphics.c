@@ -25,9 +25,9 @@ void graphic_draw_pixels(u32 x,u32 y,u32 color)
 void graphic_draw_texture(u32 x,u32 y,u32 width,u32 height,u8 * pixels)
 {
 	//TODO check if x+width and y+height is inside of screen 
-	for(u32 posy = 0;posy < width;++posy)
+	for(u32 posy = 0;posy < height;++posy)
 	{
-		for(u32 posx = 0;posx < height;++posx)
+		for(u32 posx = 0;posx < width;++posx)
 		{
 			u32 offset = (posx + double_framebuffer->width * posy) * (double_framebuffer->bpp/8);
 			graphic_draw_pixels(posx+x,posy+y,pixels[offset]);
@@ -38,9 +38,9 @@ void graphic_draw_texture(u32 x,u32 y,u32 width,u32 height,u8 * pixels)
 void graphic_fill_rectangle(u32 x,u32 y,u32 width,u32 height,u32 color)
 {
 	//TODO check if x+width and y+height is inside of screen 
-	for(u32 posy = 0;posy < width;++posy)
+	for(u32 posy = 0;posy < height;++posy)
 	{
-		for(u32 posx = 0;posx < height;++posx)
+		for(u32 posx = 0;posx < width;++posx)
 		{
 			graphic_draw_pixels(posx+x,posy+y,color);
 		}
