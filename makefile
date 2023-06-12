@@ -2,7 +2,7 @@ OSNAME     = "AtsinOS"
 ENABLE_LOG = -serial stdio #-serial file:atsin_os.log
 
 GCCPARAMS  = -m32 -std=gnu17 -ffreestanding -w -I"include/" -Wall -Wextra
-ASPARAMS   = --32
+NASMPARAMS = -felf32
 LDPARAMS   = -melf_i386 -nostdlib --allow-multiple-definition
  
 objects = obj/boot.o \
@@ -20,7 +20,7 @@ obj/%.o: src/%.c
 
 obj/%.o: src/boot/%.s
 	mkdir -p $(@D)
-	as $(ASPARAMS) -o $@ $<
+	nasm $(NASMPARAMS) -o $@ $<
 
 kernel.bin: src/boot/linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)

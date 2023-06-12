@@ -1,35 +1,40 @@
-.set MAGIC,    0x1BADB002
-.set PAGE_ALIGN,   0x00000001
-.set MEM_INFO,     0x00000002
-.set GRAPHIC_MODE, 0x00000004
-.set FLAGS,	       (PAGE_ALIGN | MEM_INFO | GRAPHIC_MODE)
-.set CHECKSUM,    -(MAGIC + FLAGS)
-.section .multiboot
+[bits 32]
 
-# define type to long for each data defined as above
-.long MAGIC
-.long FLAGS
-.long CHECKSUM
+MAGIC 			EQU   0x1BADB002
+PAGE_ALIGN 		EQU   0x00000001
+MEM_INFO 		EQU   0x00000002
+GRAPHIC_MODE 	EQU   0x00000004
+FLAGS			EQU   (PAGE_ALIGN | MEM_INFO | GRAPHIC_MODE)
+CHECKSUM 		EQU  -(MAGIC + FLAGS)
 
-.long 0
-.long 0
-.long 0
-.long 0
-.long 0
+GRAPHIC_MODE_WIDTH	 EQU  800
+GRAPHIC_MODE_HEIGHT	 EQU  600
+GRAPHIC_MODE_BPP	 EQU  32
 
-.long 0         # mode_type
-.long 800       # width
-.long 600		# height
-.long 32		# bpp
+section .multiboot
+dd MAGIC
+dd FLAGS
+dd CHECKSUM
+
+dd 0
+dd 0
+dd 0
+dd 0
+dd 0
+
+dd 0
+dd GRAPHIC_MODE_WIDTH
+dd GRAPHIC_MODE_HEIGHT
+dd GRAPHIC_MODE_BPP
    
-.section .text
-.extern _kernel
-.global _loader
-.global _double_framebuffer_buffer
+section .text
+extern _kernel
+global _loader
+global _double_framebuffer_buffer
 
 _loader:
-    mov $kernel_stack, %esp
-    push %ebx
+    mov esp,kernel_stack
+    push ebx
     call _kernel
 	cli
 	
@@ -38,10 +43,10 @@ _stop:
     hlt
     jmp _stop
 
-.section .bss
-_double_framebuffer_buffer:
-	.align 4
-	.skip 800*600*4
-.space 4*1024 # 4 KiB
-kernel_stack:
+section .bss
+	_double_framebuffer_buffer:
+		align 4
+		resb GRAPHIC_MODE_WIDTH*GRAPHIC_MODE_HEIGHT*(GRAPHIC_MODE_BPP/4)
+	kernel_stack:
+		resb 4*1024 ; 4 KiB
 
