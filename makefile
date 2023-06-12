@@ -7,7 +7,6 @@ LDPARAMS   = -melf_i386 -nostdlib --allow-multiple-definition
  
 objects = obj/boot.o \
 		  obj/kernel.o \
-		  obj/memory.o \
 		  obj/math.o \
 		  obj/timer.o \
 		  obj/keyboard.o \

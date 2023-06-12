@@ -25,6 +25,7 @@
 .section .text
 .extern _kernel
 .global _loader
+.global _double_framebuffer_buffer
 
 _loader:
     mov $kernel_stack, %esp
@@ -37,7 +38,10 @@ _stop:
     hlt
     jmp _stop
 
-
 .section .bss
+_double_framebuffer_buffer:
+	.align 4
+	.skip 800*600*4
 .space 4*1024 # 4 KiB
 kernel_stack:
+

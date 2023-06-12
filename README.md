@@ -12,7 +12,7 @@ AtsinOS is a very simple operating system designed for 2D games.
 - [x] Timer : Get time and Delay
 - [x] Get key from keyboard
 - [ ] Memory Allocation
-- [ ] Double buffer
+- [X] Double framebuffer
 - [ ] Read from disk : flat disk layout or user define layout
 - [ ] Add qoi image support : used for texture
 
