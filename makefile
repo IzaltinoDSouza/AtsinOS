@@ -1,6 +1,6 @@
 OSNAME     = "AtsinOS"
 ENABLE_LOG = -serial stdio #-serial file:atsin_os.log
-
+RAMPARAMS  = -m 256M
 GCCPARAMS  = -m32 -std=gnu17 -ffreestanding -w -I"include/" -Wall -Wextra -masm=intel
 NASMPARAMS = -felf32
 LDPARAMS   = -melf_i386 -nostdlib --allow-multiple-definition
@@ -48,7 +48,7 @@ clean:
 	
 .PHONY: run
 run: $(OSNAME).iso
-	qemu-system-x86_64 -m 256M -boot d -cdrom $<  $(ENABLE_LOG)
+	qemu-system-x86_64 $(RAMPARAMS) -boot d -cdrom $<  $(ENABLE_LOG)
 	
 .PHONY: all	
 all:

@@ -31,6 +31,7 @@ section .text
 extern _kernel
 global _loader
 global _double_framebuffer_buffer
+global _floats_save_region
 
 _loader:
     mov esp,kernel_stack
@@ -49,4 +50,7 @@ section .bss
 		resb GRAPHIC_MODE_WIDTH*GRAPHIC_MODE_HEIGHT*(GRAPHIC_MODE_BPP/4)
 	kernel_stack:
 		resb 4*1024 ; 4 KiB
-
+	_floats_save_region: ; setup in SSE2
+		align 16
+		resb 512
+		
