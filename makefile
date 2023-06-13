@@ -1,7 +1,7 @@
 OSNAME     = "AtsinOS"
 ENABLE_LOG = -serial stdio #-serial file:atsin_os.log
 
-GCCPARAMS  = -m32 -std=gnu17 -ffreestanding -w -I"include/" -Wall -Wextra
+GCCPARAMS  = -m32 -std=gnu17 -ffreestanding -w -I"include/" -Wall -Wextra -masm=intel
 NASMPARAMS = -felf32
 LDPARAMS   = -melf_i386 -nostdlib --allow-multiple-definition
  
