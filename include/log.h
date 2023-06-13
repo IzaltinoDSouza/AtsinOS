@@ -10,29 +10,29 @@
 					  						uart_write_string(")\n  "); \
 					  						uart_write_string(MESSAGE)
 
-#define log_info(message) uart_write_string("\033[0;32m"); \
+#define log_info(message) {uart_write_string("\033[0;32m"); \
 						  LOG_MESSAGE_TEMPLATE("[Info]",message); \
-						  uart_write_string("\033[0m \n\n")
+						  uart_write_string("\033[0m \n\n");}
 
-#define log_critical(message) uart_write_string("\033[0;31m"); \
+#define log_critical(message) {uart_write_string("\033[0;31m"); \
 						   	 LOG_MESSAGE_TEMPLATE("[Critical]",message); \
-						   	 uart_write_string("\033[0m \n\n")
+						   	 uart_write_string("\033[0m \n\n");}
 
-#define log_debug(message) uart_write_string("\033[0;36m"); \
+#define log_debug(message) {uart_write_string("\033[0;36m"); \
 						   	 LOG_MESSAGE_TEMPLATE("[Debug]",message); \
-						   	 uart_write_string("\033[0m \n\n")
+						   	 uart_write_string("\033[0m \n\n");}
 
-#define log_info_number(message,number) uart_write_string("\033[0;32m"); \ 
+#define log_info_number(message,number) {uart_write_string("\033[0;32m"); \ 
 							     LOG_MESSAGE_TEMPLATE("[Info]",message); \
 							     uart_write_number(number); \
-							     uart_write_string("\033[0m \n\n")
+							     uart_write_string("\033[0m \n\n");}
 							     
-#define log_crtical_number(message,number) uart_write_string("\033[0;31m"); \ 
+#define log_crtical_number(message,number) {uart_write_string("\033[0;31m"); \ 
 							     LOG_MESSAGE_TEMPLATE("[Critical]",message); \
 							     uart_write_number(number); \
-							     uart_write_string("\033[0m \n\n")
+							     uart_write_string("\033[0m \n\n");}
 
-#define log_debug_number(message,number) uart_write_string("\033[0;36m"); \ 
+#define log_debug_number(message,number) {uart_write_string("\033[0;36m"); \ 
 							     LOG_MESSAGE_TEMPLATE("[Debug]",message); \
 							     uart_write_number(number); \
-							     uart_write_string("\033[0m \n\n")
+							     uart_write_string("\033[0m \n\n");}
